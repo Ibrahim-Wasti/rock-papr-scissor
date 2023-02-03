@@ -14,22 +14,23 @@ function playRound (playerChoice) {
     let playerSelection = playerChoice.toLowerCase();
     let computerSelection = getComputerSelection();
     let result = "";
+    let scores = "";
 
     if (['rock', 'paper', 'scissors'].includes(playerSelection)) {
         console.log('CPU', computerSelection)
         console.log('PC', playerSelection)
     }
         if (playerSelection==computerSelection) {
-            result =  ('<br>You both chose: ' + playerSelection.toUpperCase() + ". No one scores any points!" +
-            "<br><br>Player score: " + playerScore + "<br>CPU Score: " + computerScore);
+            result =  ('<br>You both chose: ' + playerSelection.toUpperCase() + ". No one scores any points!");
+            scores =  ("<br><br>Player Score: " + playerScore + "<br>CPU Score: " + computerScore);
         } 
         else if ((playerSelection=='rock' && computerSelection=='scissors') ||
                  (playerSelection=='scissors' && computerSelection=='paper') ||
                  (playerSelection=='paper' && computerSelection=='rock')) {
                 
                  ++playerScore;
-                 result =  ('<br>You win! ' + playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() +
-                            "<br><br>Player score: " + playerScore + "<br>CPU Score: " + computerScore);
+                 result =  ('<br>You win! ' + playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase()); 
+                 scores = ("<br><br>Player Score: " + playerScore + "<br>CPU Score: " + computerScore);
             
                 if (playerScore == 5) {
                     result += ("<br>You won the game! Reload the page to play again!");
@@ -37,8 +38,8 @@ function playRound (playerChoice) {
         } 
         else {
             ++computerScore;
-            result =  ('<br>You lose! ' + playerSelection.toUpperCase() + ' loses to ' + computerSelection.toUpperCase() +
-                        "<br><br>Player score: " + playerScore + "<br>CPU Score: " + computerScore);
+            result =  ('<br>You lose! ' + playerSelection.toUpperCase() + ' loses to ' + computerSelection.toUpperCase())
+            scores = ("<br><br>Player Score: " + playerScore + "<br>CPU Score: " + computerScore);
 
             if (computerScore == 5) {
                 result += ("<br>You lost the game! Reload the page to play again!");
@@ -46,6 +47,7 @@ function playRound (playerChoice) {
         }
 
     document.getElementById('result').innerHTML = result;
+    document.getElementById('scores').innerHTML = scores;
     return
 
 };
